@@ -1,0 +1,74 @@
+.footer {
+	background-color: #1f1a17;
+	&-lvl-1 {
+		padding: 25px 0 17px;
+		ul {
+			margin: 0;
+			padding: 0;
+			li {
+				list-style-type: none;
+				h4 {
+					font-size: 16px;
+					color: #F7A40A;
+					margin-bottom: 18px;
+				}
+				a {
+					color: #fff;
+					margin-bottom: 9px;
+					display: inline-block;
+					font-size: 16px;
+					&:hover {
+						color: #F7A40A;
+						text-decoration: none; 
+					}
+					&.fb {
+						background: url(../img/sprite.png) no-repeat;
+						padding-left: 23px;
+						&:hover {
+							background-position: 0 -166px;
+						}
+					}
+					&.tw {
+						background: url(../img/sprite.png) 0 -27px no-repeat;
+						padding-left: 23px;
+						&:hover {
+							background-position: 0 -193px;
+						}
+					} 
+					&.yt {
+						background: url(../img/sprite.png) 0 -88px no-repeat;
+						padding-left: 23px;
+						&:hover {
+							background-position: 0 -254px;
+						}
+					}  
+				}
+			}
+		}
+		.contacts {
+			li {
+				display: flex;
+				justify-content: space-between;
+				>div {
+					&:first-child {
+						width: 30%;
+					}
+					&:last-child {
+						width: 70%;
+						padding-left: 10px;
+					}
+				}
+				p {
+					color: #fff;
+					font-size: 16px;
+				}
+			}
+		}
+		.footer-hr {
+			border-top: 1px solid #F7A40A;
+		}
+		.copy {
+			color: #fff;
+		}
+	}
+}
