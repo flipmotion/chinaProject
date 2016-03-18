@@ -5,6 +5,57 @@
 	width: 100%;
 	z-index: 999;
 	&-lvl-1 {
+		.search {
+			position: absolute;
+			top: 0;
+			left: 60px;
+			right: 0;
+			background: #000;
+			color: #fff;
+			transition:@transition;
+			top: -52px;
+			height: 52px;
+			display: flex;
+			.btn-close {
+				width: 52px;
+				display: inline-block;
+			}
+			&>div:nth-child(1) {
+				display: flex;
+			}
+			&>div:nth-child(2) {
+				display: flex;
+			}
+			.shatter {
+				width: 60px;
+			}
+			.btn {
+				height: 52px;
+				background: 0 0;
+				border: none;
+				border-radius: 0;
+				color: #fff;
+				font-size: 16px;
+				width: 57px;
+			}
+			.form-control {
+				height: 52px;
+				background: 0 0;
+				border: none;
+				border-radius: 0;
+				outline: none !important;
+				box-shadow: none;
+				color :#fff;
+				font-size: 18px;
+				&::-webkit-input-placeholder {color:#fff;}
+				&::-moz-placeholder          {color:#fff;}/* Firefox 19+ */
+				&:-moz-placeholder           {color:#fff;}/* Firefox 18- */
+				&:-ms-input-placeholder      {color:#fff;}
+			}
+			&.is-active {
+				top:0;
+			}
+		}
 		.my-navigation-top {
 			background: rgba(255,255,255,.98);
 			width: 100%;
@@ -28,9 +79,13 @@
 				&.two-a {
 					width: 50%;
 					display: flex;
+					
 					.btn-search {
 						color: #333;
 						font-size: 16px;
+						&.is-active {
+							background: @yellow;
+						}
 					}
 				}
 				&:hover,&:focus {
@@ -51,10 +106,6 @@
 				&:hover,&:focus {
 					background: @yellow;
 					text-decoration: none;
-					i {
-						
-					}
-
 				}
 			}
 		}

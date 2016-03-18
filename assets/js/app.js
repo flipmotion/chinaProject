@@ -5,6 +5,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 (function () {
 	var owlMain = $('[data-item="slider-main"]');
+	owlMain.on('initialized.owl.carousel', function (e) {
+		var carrentSlide = e.page.index;
+		$('.inner-slider-title').removeClass('active');
+		$('.inner-slider-title').each(function (carrentTarget) {
+			if (carrentSlide == carrentTarget) {
+				$(this).addClass('active');
+			}
+		});
+	});
+
 	owlMain.owlCarousel(_defineProperty({
 		loop: true,
 		margin: 0,
@@ -16,8 +26,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 		autoplay: true,
 		navText: ["<i class='my-arrow-left'></i>", "<i class='my-arrow-right'></i>"]
 	}, 'dots', true));
-	var tabs = function tabs(options) {
 
+	owlMain.on('changed.owl.carousel', function (that) {
+		var carrentSlide = that.page.index;
+		$('.inner-slider-title').removeClass('active');
+		$('.inner-slider-title').each(function (carrentTarget) {
+			if (carrentSlide == carrentTarget) {
+				$(this).addClass('active');
+			}
+		});
+	});
+
+	$('[data-nav="right"]').click(function () {
+		owlMain.trigger('next.owl.carousel');
+	});
+	$('[data-nav="left"]').click(function () {
+		owlMain.trigger('prev.owl.carousel');
+	});
+	var search = function search(options) {
+		var el = document.querySelector(options.el);
+		var myTarget = document.querySelector(options.myTarget);
+		var elClose = document.querySelector(options.elClose);
+
+		var init = function init() {
+			el.addEventListener('click', function (e) {
+				e.preventDefault();
+				myTarget.classList.toggle('is-active');
+				el.classList.toggle('is-active');
+			});
+			elClose.addEventListener('click', function (e) {
+				e.preventDefault();
+				myTarget.classList.toggle('is-active');
+				el.classList.toggle('is-active');
+			});
+		};
+
+		return {
+			init: init
+		};
+	};
+	var tabs = function tabs(options) {
 		var el = document.querySelector(options.el);
 		var tabNavigationLinks = el.querySelectorAll(options.tabNavigationLinks);
 		var tabContentContainers = el.querySelectorAll(options.tabContentContainers);
@@ -58,14 +106,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			goToTab: goToTab
 		};
 	};
-	window.tabs = tabs;
 
-	var myTabs = tabs({
-		el: '#tabs',
+	window.tabs = tabs;
+	window.search = search;
+	var myTabs1 = tabs({
+		el: '#tabs1',
 		tabNavigationLinks: '.c-tabs-nav__link',
 		tabContentContainers: '.c-tab'
 	});
-	myTabs.init();
+	var myTabs2 = tabs({
+		el: '#tabs2',
+		tabNavigationLinks: '.c-tabs-nav__link',
+		tabContentContainers: '.c-tab'
+	});
+	var myTabs3 = tabs({
+		el: '#tabs3',
+		tabNavigationLinks: '.c-tabs-nav__link',
+		tabContentContainers: '.c-tab'
+	});
+	var mySearch = search({
+		el: '[data-item="btn-search"]',
+		myTarget: '[data-item="search"',
+		elClose: '[data-item="btn-close"]'
+	});
+	myTabs1.init();
+	myTabs2.init();
+	myTabs3.init();
+	mySearch.init();
 
 	/*var news = $('[data-item="slider-news"]');
  news.owlCarousel({
